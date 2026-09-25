@@ -91,9 +91,9 @@
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-start="0" data-width="1920" data-height="1080" data-duration="24">
+    <div id="root" data-composition-id="main" data-start="0" data-width="1920" data-height="1080" data-duration="24.5">
 
-      <audio id="soundtrack" src="assets/audio/mix.wav" data-start="0" data-duration="24" data-track-index="10" data-volume="1"></audio>
+      <audio id="soundtrack" src="assets/audio/mix.wav" data-start="0" data-duration="24.5" data-track-index="10" data-volume="1"></audio>
 
       <section id="s1" class="clip" data-start="0" data-duration="3.4" data-track-index="0">
         <div class="grid-lines" id="s1-grid"></div>
@@ -138,7 +138,7 @@
         </div>
       </section>
 
-      <section id="s4" class="clip" data-start="12" data-duration="3.8" data-track-index="0">
+      <section id="s4" class="clip" data-start="12" data-duration="4.2" data-track-index="0">
         <div class="grid-lines" id="s4-grid" data-layout-allow-overflow style="opacity:0.6"></div>
         <div id="s4-head">
           <div class="eyebrow" id="s4-eyebrow">Plus four services</div>
@@ -147,7 +147,7 @@
         <div id="s4-stage"><div id="s4-ui"></div></div>
       </section>
 
-      <section id="s5" class="clip" data-start="15.8" data-duration="3.8" data-track-index="0">
+      <section id="s5" class="clip" data-start="16.2" data-duration="3.9" data-track-index="0">
         <div id="s5-panel">
           <div id="s5-photo" data-layout-allow-overflow></div>
           <div id="s5-text">
@@ -163,7 +163,7 @@
         </div>
       </section>
 
-      <section id="s6" class="clip" data-start="19.6" data-duration="4.4" data-track-index="0">
+      <section id="s6" class="clip" data-start="20.1" data-duration="4.4" data-track-index="0">
         <div class="bg-glow" id="s6-glow" data-layout-allow-overflow style="left:900px;top:80px;width:1400px;height:1400px;background:radial-gradient(circle, rgba(65,142,253,0.3) 0%, rgba(65,142,253,0) 62%);"></div>
         <div id="s6-wrap">
           <div id="s6-mark">Vantlogix</div>
@@ -186,7 +186,7 @@
       tl.fromTo("#s1-meta", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, 0.1);
       tl.fromTo("#s1-title", { opacity: 0, x: -80, scale: 1.08 }, { opacity: 1, x: 0, scale: 1, duration: 0.55, ease: "expo.out" }, 0.15);
       tl.fromTo("#s1-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: "power3.inOut" }, 0.55);
-      tl.fromTo("#s1-chips .chip", { opacity: 0, x: 90 }, { opacity: 1, x: 0, duration: 0.45, ease: "back.out(1.6)", stagger: 0.22 }, 0.9);
+      tl.fromTo("#s1-chips .chip", { opacity: 0, x: 90 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out", stagger: 0.22 }, 0.9);
       tl.fromTo("#s1-meta-r", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 1.8);
 
       // Scene 2 — reveal (3.4 – 7.4)
@@ -204,24 +204,24 @@
       tl.fromTo("#s3-track-wrap", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 8.0);
 
       // Scene 4 — services UI (11.2 – 14.8)
-      tl.fromTo("#s4-grid", { y: 0 }, { y: -60, duration: 3.8, ease: "none" }, 12.0);
+      tl.fromTo("#s4-grid", { y: 0 }, { y: -60, duration: 4.2, ease: "none" }, 12.0);
       tl.fromTo("#s4-eyebrow", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.4, ease: "power2.out" }, 12.1);
       tl.fromTo("#s4-label", { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.45, ease: "power2.out" }, 12.25);
       tl.fromTo("#s4-ui", { opacity: 0, y: 220, rotationX: 24, scale: 0.9, transformPerspective: 1800 }, { opacity: 1, y: 0, rotationX: 0, scale: 1, transformPerspective: 1800, duration: 0.9, ease: "expo.out" }, 12.15);
-      tl.to("#s4-ui", { scale: 1.04, duration: 2.7, ease: "sine.inOut" }, 13.05);
+      tl.to("#s4-ui", { scale: 1.04, duration: 3.1, ease: "sine.inOut" }, 13.05);
 
       // Scene 5 — motorsport + proof (14.8 – 18.0)
-      tl.fromTo("#s5-panel", { opacity: 0, x: 260 }, { opacity: 1, x: 0, duration: 0.6, ease: "expo.out" }, 15.85);
-      tl.fromTo("#s5-photo", { scale: 1.12 }, { scale: 1, duration: 3.8, ease: "power1.out" }, 15.8);
-      tl.fromTo(".s5-h", { yPercent: 110 }, { yPercent: 0, duration: 0.55, ease: "power4.out", stagger: 0.14 }, 16.15);
-      tl.fromTo("#s5-proof .proof", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.45, ease: "back.out(1.5)", stagger: 0.18 }, 16.7);
+      tl.fromTo("#s5-panel", { opacity: 0, x: 260 }, { opacity: 1, x: 0, duration: 0.6, ease: "expo.out" }, 16.25);
+      tl.fromTo("#s5-photo", { scale: 1.12 }, { scale: 1, duration: 3.9, ease: "power1.out" }, 16.2);
+      tl.fromTo(".s5-h", { yPercent: 110 }, { yPercent: 0, duration: 0.55, ease: "power4.out", stagger: 0.14 }, 16.55);
+      tl.fromTo("#s5-proof .proof", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out", stagger: 0.18 }, 17.1);
 
       // Scene 6 — outro (18.0 – 22.0)
-      tl.fromTo("#s6-glow", { scale: 0.85 }, { scale: 1.1, duration: 4.4, ease: "sine.inOut" }, 19.6);
-      tl.fromTo("#s6-mark", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 19.7);
-      tl.fromTo("#s6-q", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.65, ease: "power4.out" }, 19.85);
-      tl.fromTo("#s6-btn", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(2)" }, 20.4);
-      tl.fromTo("#s6-url", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.45, ease: "power2.out" }, 20.6);
+      tl.fromTo("#s6-glow", { scale: 0.85 }, { scale: 1.1, duration: 4.4, ease: "sine.inOut" }, 20.1);
+      tl.fromTo("#s6-mark", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 20.2);
+      tl.fromTo("#s6-q", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.65, ease: "power4.out" }, 20.35);
+      tl.fromTo("#s6-btn", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.5, ease: "power3.out" }, 20.9);
+      tl.fromTo("#s6-url", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.45, ease: "power2.out" }, 21.1);
 
       window.__timelines["main"] = tl;
     </script>
