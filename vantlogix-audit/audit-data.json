@@ -1,0 +1,95 @@
+{
+  "summary": {
+    "health_score": 36,
+    "business_type": "B2B venue and event technology (platform plus professional services)",
+    "scope_note": "Site unpublished; project-level audit. Performance excluded and weights rescaled.",
+    "top_findings": [
+      "No page titles or meta descriptions; site defaults are 'My Framer Site' / 'Made with Framer'",
+      "No tablet or phone breakpoints on any page or on the layout template",
+      "Duplicate homepage at /home",
+      "Two H1 headings in the homepage hero",
+      "Internal notes and placeholder copy in page text"
+    ],
+    "quick_wins": [
+      "Set site and per-page titles and descriptions",
+      "Delete or redirect /home",
+      "Remove the duplicate homepage H1",
+      "Add alt text to 5 images",
+      "Add Organization JSON-LD in Custom Code"
+    ]
+  },
+  "categories": [
+    {
+      "name": "Technical SEO",
+      "score": 40,
+      "what_works": ["Clean nested URL structure", "Shared layout template", "No redirect chains"],
+      "findings": [
+        {"title": "No mobile or tablet breakpoints", "severity": "Critical", "description": "All 12 pages and the Corporate Layout template have only a Desktop breakpoint.", "recommendation": "Add Tablet (810 px) and Phone (390 px) breakpoints and fix each section."},
+        {"title": "Duplicate page /home", "severity": "High", "description": "/home repeats / (479 vs 523 words, same headings).", "recommendation": "Delete /home or redirect it to /."},
+        {"title": "Site not published", "severity": "High", "description": "Framer lists all pages as added; production URL is empty.", "recommendation": "Publish on the custom domain, then verify robots.txt, sitemap.xml and canonicals."}
+      ]
+    },
+    {
+      "name": "Content Quality",
+      "score": 55,
+      "what_works": ["Specific, credible copy", "Named founder, offices, client and certification", "Dedicated service pages"],
+      "findings": [
+        {"title": "Internal notes in page copy", "severity": "High", "description": "Notes such as 'Confirm investor naming' and 'to be confirmed before launch' appear in page text.", "recommendation": "Remove them before publishing."},
+        {"title": "Thin pages", "severity": "Medium", "description": "Service detail pages have 128-150 words; Contact 123; Careers 184.", "recommendation": "Expand service pages to 300-500 words."},
+        {"title": "News items have no pages", "severity": "Medium", "description": "News collection has 2 items but no /newsroom/:slug detail page.", "recommendation": "Create a CMS detail page and link to it."}
+      ]
+    },
+    {
+      "name": "On-Page SEO",
+      "score": 30,
+      "what_works": ["Single descriptive H1 on 11 of 12 pages", "Logical heading order"],
+      "findings": [
+        {"title": "No titles or meta descriptions", "severity": "Critical", "description": "All pages inherit 'My Framer Site' / 'Made with Framer'.", "recommendation": "Set unique title and description per page (drafts in ACTION-PLAN.md)."},
+        {"title": "Two H1s on homepage", "severity": "High", "description": "Hero contains two copies of the H1 (nodes bvdxQfF4A and pE44kUZ06).", "recommendation": "Keep one H1."},
+        {"title": "Weak H1s and missing search terms", "severity": "Medium", "description": "/contact, /industries and /careers H1s lack keywords; 'software' is rarely used.", "recommendation": "Rewrite H1s and use 'venue management software' phrasing."},
+        {"title": "Weak internal linking", "severity": "Medium", "description": "/industries links only to /contact; /careers has no body links.", "recommendation": "Add contextual links between industries, services and the case study."}
+      ]
+    },
+    {
+      "name": "Schema / Structured Data",
+      "score": 0,
+      "what_works": [],
+      "findings": [
+        {"title": "No structured data", "severity": "High", "description": "All custom code slots are empty.", "recommendation": "Add Organization, WebSite, Service, NewsArticle and BreadcrumbList JSON-LD."}
+      ]
+    },
+    {
+      "name": "AI Search Readiness",
+      "score": 40,
+      "what_works": ["Quotable factual statements", "Consistent named entities"],
+      "findings": [
+        {"title": "Default metadata and no entity schema", "severity": "Medium", "description": "AI tools would read 'My Framer Site' and find no Organization markup.", "recommendation": "Fix metadata and add Organization schema."}
+      ]
+    },
+    {
+      "name": "Images",
+      "score": 25,
+      "what_works": ["Images served from Framer's CDN"],
+      "findings": [
+        {"title": "Missing alt text", "severity": "Medium", "description": "5 of 6 content images lack alt text (4 on the homepage, 1 on /industries).", "recommendation": "Add descriptive alt text."}
+      ]
+    },
+    {
+      "name": "Performance (CWV)",
+      "score": null,
+      "what_works": [],
+      "findings": [
+        {"title": "Not measured", "severity": "Info", "description": "Site unpublished; no field or lab data.", "recommendation": "Run PageSpeed Insights after launch."}
+      ]
+    }
+  ],
+  "action_plan": {
+    "phases": [
+      {"name": "Phase 1: Critical Fixes", "timeframe": "Before launch", "items": ["Site and page titles/descriptions", "Tablet and phone breakpoints", "Remove internal notes", "Remove /home", "Remove duplicate H1"]},
+      {"name": "Phase 2: High-Impact Improvements", "timeframe": "Week 1 after launch", "items": ["Organization JSON-LD", "Image alt text", "Publish on custom domain and verify robots/sitemap/canonicals", "Submit sitemap to Search Console", "Social image and favicon"]},
+      {"name": "Phase 3: Content & Authority", "timeframe": "Month 2", "items": ["News detail pages", "Expand service pages", "Rewrite weak H1s", "Use 'software' phrasing", "Internal links", "Service and Breadcrumb schema"]},
+      {"name": "Phase 4: Monitoring & Iteration", "timeframe": "Ongoing", "items": ["PageSpeed Insights checks", "Search Console coverage and queries"]}
+    ]
+  },
+  "artifacts": {"findings_dir": "findings/", "screenshots_dir": null}
+}
