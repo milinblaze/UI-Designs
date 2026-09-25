@@ -3,7 +3,7 @@ import soundfile as sf
 import sys
 
 SR = 48000
-DUR = 24.5
+DUR = 25.8
 BPM = 90
 BEAT = 60 / BPM
 N = int(SR * DUR)
@@ -63,7 +63,7 @@ while ci * CH < DUR:
 master = np.ones(N)
 fi = int(1.0 * SR)
 master[:fi] = np.linspace(0, 1, fi) ** 1.5
-fo0 = int(22.3 * SR)
+fo0 = int(23.6 * SR)
 master[fo0:] = np.linspace(1, 0, N - fo0) ** 1.5
 
 stems = np.stack([pad * master, arp * master, sub * master], axis=1)
