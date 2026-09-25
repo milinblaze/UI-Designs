@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Vantlogix — brag</title>
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Manrope"; font-weight: 400; src: url("assets/fonts/manrope-latin-400-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Manrope"; font-weight: 500; src: url("assets/fonts/manrope-latin-500-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Manrope"; font-weight: 600; src: url("assets/fonts/manrope-latin-600-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Manrope"; font-weight: 700; src: url("assets/fonts/manrope-latin-700-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Manrope"; font-weight: 800; src: url("assets/fonts/manrope-latin-800-normal.woff2") format("woff2"); }
+
+      :root {
+        --navy: #132040;
+        --navy-deep: #0c1630;
+        --panel: #1e2943;
+        --blue: #418efd;
+        --white: #f7f9fd;
+        --muted: rgba(247, 249, 253, 0.68);
+        --ink: #1c1e22;
+        --ink-muted: #5b6070;
+      }
+      body { margin: 0; background: var(--navy); font-family: "Manrope", sans-serif; color: var(--white); }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--navy); }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+
+      .bg-glow { position: absolute; border-radius: 50%; pointer-events: none; }
+      .grid-lines {
+        position: absolute; inset: 0; pointer-events: none;
+        background-image:
+          linear-gradient(rgba(65, 142, 253, 0.14) 2px, transparent 2px),
+          linear-gradient(90deg, rgba(65, 142, 253, 0.14) 2px, transparent 2px);
+        background-size: 120px 120px;
+      }
+      .eyebrow { font-size: 24px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--blue); }
+      .meta { font-size: 22px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+
+      /* Scene 1 — hook */
+      #s1-wrap { position: absolute; left: 140px; right: 140px; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: center; }
+      #s1-title { font-size: 190px; font-weight: 800; letter-spacing: -0.035em; line-height: 1; margin: 0; }
+      #s1-rule { height: 4px; width: 100%; background: var(--blue); margin: 56px 0 48px; transform-origin: left center; }
+      #s1-chips { display: flex; gap: 28px; }
+      .chip { font-size: 40px; font-weight: 700; padding: 22px 40px; border-radius: 18px; border: 3px solid rgba(65, 142, 253, 0.55); background: rgba(65, 142, 253, 0.12); }
+      #s1-ghost { position: absolute; right: -60px; top: 70px; font-size: 300px; font-weight: 800; color: rgba(65, 142, 253, 0.13); letter-spacing: -0.04em; white-space: nowrap; }
+      #s1-meta { position: absolute; left: 140px; top: 90px; }
+      #s1-meta-r { position: absolute; right: 140px; bottom: 90px; }
+
+      /* Scene 2 — reveal */
+      #s2-photo { position: absolute; inset: 0; background: url("assets/race-ops.jpg") center / cover no-repeat; }
+      #s2-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(12, 22, 48, 0.97) 0%, rgba(12, 22, 48, 0.9) 42%, rgba(12, 22, 48, 0.35) 72%, rgba(12, 22, 48, 0.1) 100%); }
+      #s2-copy { position: absolute; left: 140px; top: 0; bottom: 0; width: 1000px; display: flex; flex-direction: column; justify-content: center; }
+      #s2-mark { font-size: 44px; font-weight: 800; letter-spacing: -0.01em; color: var(--blue); margin-bottom: 36px; }
+      .mask { overflow: hidden; }
+      .s2-line { display: block; font-size: 96px; font-weight: 800; line-height: 1.06; letter-spacing: -0.03em; }
+      #s2-meta { position: absolute; left: 140px; bottom: 90px; }
+
+      /* Scene 3 — SPOVIX */
+      #s3-center { position: absolute; left: 140px; right: 140px; top: 230px; display: flex; flex-direction: column; align-items: flex-start; }
+      #s3-logo { font-size: 230px; font-weight: 800; letter-spacing: -0.045em; line-height: 0.9; margin: 26px 0 36px; }
+      #s3-sub { font-size: 50px; font-weight: 500; color: var(--muted); max-width: 1300px; line-height: 1.2; }
+      #s3-track-wrap { position: absolute; left: 0; right: 0; bottom: 110px; height: 120px; border-top: 3px solid rgba(65, 142, 253, 0.35); border-bottom: 3px solid rgba(65, 142, 253, 0.35); overflow: hidden; }
+      #s3-track { position: absolute; left: 0; top: 0; height: 120px; display: flex; align-items: center; gap: 70px; white-space: nowrap; }
+      .tick { font-size: 44px; font-weight: 700; color: var(--white); display: flex; align-items: center; gap: 70px; }
+      .tick::after { content: ""; width: 14px; height: 14px; border-radius: 50%; background: var(--blue); }
+
+      /* Scene 4 — services UI */
+      #s4-head { position: absolute; left: 140px; top: 96px; right: 140px; display: flex; justify-content: space-between; align-items: baseline; }
+      #s4-label { font-size: 34px; font-weight: 700; color: var(--white); }
+      #s4-stage { position: absolute; left: 0; right: 0; top: 200px; bottom: 60px; display: flex; justify-content: center; align-items: center; }
+      #s4-ui { width: 1560px; height: 630px; border-radius: 28px; overflow: hidden; border: 3px solid rgba(65, 142, 253, 0.4); box-shadow: 0 40px 120px rgba(0, 0, 0, 0.45); background: url("assets/ui-services.png") center / cover no-repeat; }
+
+      /* Scene 5 — motorsport section + proof */
+      #s5-panel { position: absolute; left: 140px; right: 140px; top: 120px; height: 600px; background: #ffffff; border-radius: 28px; overflow: hidden; display: flex; }
+      #s5-photo { width: 620px; flex: none; background: url("assets/race-ops.jpg") center / cover no-repeat; }
+      #s5-text { flex: 1; padding: 0 80px; display: flex; flex-direction: column; justify-content: center; color: var(--ink); }
+      #s5-text .eyebrow { color: #2f6fe0; margin-bottom: 26px; }
+      .s5-h { display: block; white-space: nowrap; font-size: 68px; font-weight: 700; line-height: 1.12; letter-spacing: -0.025em; }
+      #s5-proof { position: absolute; left: 140px; right: 140px; bottom: 110px; display: flex; gap: 24px; flex-wrap: nowrap; }
+      .proof { font-size: 34px; font-weight: 700; padding: 22px 34px; border-radius: 16px; background: var(--panel); border: 3px solid rgba(65, 142, 253, 0.35); white-space: nowrap; }
+      .proof b { color: var(--blue); font-weight: 800; }
+
+      /* Scene 6 — outro */
+      #s6-wrap { position: absolute; left: 140px; right: 140px; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: center; }
+      #s6-mark { font-size: 60px; font-weight: 800; color: var(--blue); margin-bottom: 40px; }
+      #s6-q { font-size: 104px; font-weight: 800; line-height: 1.08; letter-spacing: -0.03em; max-width: 1500px; margin: 0; }
+      #s6-row { display: flex; align-items: center; gap: 40px; margin-top: 64px; }
+      #s6-btn { font-size: 40px; font-weight: 700; padding: 28px 52px; border-radius: 18px; background: #2f6fe0; color: #ffffff; box-shadow: 0 18px 60px rgba(65, 142, 253, 0.45); }
+      #s6-url { font-size: 36px; font-weight: 600; color: var(--muted); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-width="1920" data-height="1080" data-duration="22">
+
+      <section id="s1" class="clip" data-start="0" data-duration="3.4" data-track-index="0">
+        <div class="grid-lines" id="s1-grid"></div>
+        <div class="bg-glow" id="s1-glow" data-layout-allow-overflow style="left:1100px;top:-200px;width:1100px;height:1100px;background:radial-gradient(circle, rgba(65,142,253,0.32) 0%, rgba(65,142,253,0) 65%);"></div>
+        <div id="s1-ghost" data-layout-allow-overflow aria-hidden="true">LIGHTS OUT</div>
+        <div class="meta" id="s1-meta">Live event operations</div>
+        <div id="s1-wrap">
+          <h1 id="s1-title">Race weekend.</h1>
+          <div id="s1-rule"></div>
+          <div id="s1-chips">
+            <div class="chip">Demand spikes</div>
+            <div class="chip">Accreditation</div>
+            <div class="chip">Ancillary services</div>
+          </div>
+        </div>
+        <div class="meta" id="s1-meta-r">All at once</div>
+      </section>
+
+      <section id="s2" class="clip" data-start="3.4" data-duration="4" data-track-index="0">
+        <div id="s2-photo" data-layout-allow-overflow></div>
+        <div id="s2-shade"></div>
+        <div id="s2-copy">
+          <div id="s2-mark">Vantlogix</div>
+          <div class="mask"><span class="s2-line">We build technology</span></div>
+          <div class="mask"><span class="s2-line">for complex venues</span></div>
+          <div class="mask"><span class="s2-line">and live events</span></div>
+        </div>
+        <div class="meta" id="s2-meta">Dubai · San Jose · Kochi</div>
+      </section>
+
+      <section id="s3" class="clip" data-start="7.4" data-duration="3.8" data-track-index="0">
+        <div class="bg-glow" id="s3-glow" data-layout-allow-overflow style="left:-300px;top:-300px;width:1300px;height:1300px;background:radial-gradient(circle, rgba(65,142,253,0.28) 0%, rgba(65,142,253,0) 65%);"></div>
+        <div id="s3-center">
+          <div class="eyebrow" id="s3-eyebrow">Our flagship platform</div>
+          <div id="s3-logo">SPOVIX</div>
+          <div id="s3-sub">A modular venue and event management system</div>
+        </div>
+        <div id="s3-track-wrap">
+          <div id="s3-track" data-layout-allow-overflow>
+            <span class="tick">Stadiums</span><span class="tick">Motorsport venues</span><span class="tick">Racecourses</span><span class="tick">Arenas</span><span class="tick">Conference &amp; exhibition centres</span><span class="tick">Multi-sport complexes</span><span class="tick">Stadiums</span><span class="tick">Motorsport venues</span><span class="tick">Racecourses</span><span class="tick">Arenas</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="s4" class="clip" data-start="11.2" data-duration="3.6" data-track-index="0">
+        <div class="grid-lines" id="s4-grid" data-layout-allow-overflow style="opacity:0.6"></div>
+        <div id="s4-head">
+          <div class="eyebrow" id="s4-eyebrow">Plus four services</div>
+          <div id="s4-label">Consulting · Development · Data · Cloud</div>
+        </div>
+        <div id="s4-stage"><div id="s4-ui"></div></div>
+      </section>
+
+      <section id="s5" class="clip" data-start="14.8" data-duration="3.2" data-track-index="0">
+        <div id="s5-panel">
+          <div id="s5-photo" data-layout-allow-overflow></div>
+          <div id="s5-text">
+            <div class="eyebrow">Where the depth is real</div>
+            <div class="mask"><span class="s5-h">Built close to motorsport,</span></div>
+            <div class="mask"><span class="s5-h">not adapted for it</span></div>
+          </div>
+        </div>
+        <div id="s5-proof">
+          <div class="proof"><b>Yas Marina Circuit</b> on SPOVIX</div>
+          <div class="proof">SOC 2 Type 1</div>
+          <div class="proof">UAE · India · Middle East · US</div>
+        </div>
+      </section>
+
+      <section id="s6" class="clip" data-start="18" data-duration="4" data-track-index="0">
+        <div class="bg-glow" id="s6-glow" data-layout-allow-overflow style="left:900px;top:80px;width:1400px;height:1400px;background:radial-gradient(circle, rgba(65,142,253,0.3) 0%, rgba(65,142,253,0) 62%);"></div>
+        <div id="s6-wrap">
+          <div id="s6-mark">Vantlogix</div>
+          <h2 id="s6-q">Ready to see what Vantlogix can do for your venue?</h2>
+          <div id="s6-row">
+            <div id="s6-btn">Talk to our team</div>
+            <div id="s6-url">Home of SPOVIX</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+
+      // Scene 1 — hook (0 – 3.4)
+      tl.fromTo("#s1-grid", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power1.out" }, 0);
+      tl.fromTo("#s1-glow", { scale: 0.85 }, { scale: 1.1, duration: 3.4, ease: "sine.inOut" }, 0);
+      tl.fromTo("#s1-ghost", { x: 120 }, { x: -140, duration: 3.4, ease: "none" }, 0);
+      tl.fromTo("#s1-meta", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, 0.1);
+      tl.fromTo("#s1-title", { opacity: 0, x: -80, scale: 1.08 }, { opacity: 1, x: 0, scale: 1, duration: 0.55, ease: "expo.out" }, 0.15);
+      tl.fromTo("#s1-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: "power3.inOut" }, 0.55);
+      tl.fromTo("#s1-chips .chip", { opacity: 0, x: 90 }, { opacity: 1, x: 0, duration: 0.45, ease: "back.out(1.6)", stagger: 0.22 }, 0.9);
+      tl.fromTo("#s1-meta-r", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 1.8);
+
+      // Scene 2 — reveal (3.4 – 7.4)
+      tl.fromTo("#s2-photo", { scale: 1.14 }, { scale: 1.0, duration: 4, ease: "power1.out" }, 3.4);
+      tl.fromTo("#s2-mark", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 3.55);
+      tl.fromTo(".s2-line", { yPercent: 110 }, { yPercent: 0, duration: 0.6, ease: "power4.out", stagger: 0.14 }, 3.75);
+      tl.fromTo("#s2-meta", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 4.5);
+
+      // Scene 3 — SPOVIX (7.4 – 11.2)
+      tl.fromTo("#s3-glow", { scale: 0.9, opacity: 0.6 }, { scale: 1.12, opacity: 1, duration: 3.8, ease: "sine.inOut" }, 7.4);
+      tl.fromTo("#s3-eyebrow", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.4, ease: "power2.out" }, 7.5);
+      tl.fromTo("#s3-logo", { opacity: 0, scale: 0.86, y: 30 }, { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: "expo.out" }, 7.6);
+      tl.fromTo("#s3-sub", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 8.0);
+      tl.fromTo("#s3-track", { x: 0 }, { x: -1500, duration: 3.8, ease: "none" }, 7.4);
+      tl.fromTo("#s3-track-wrap", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 7.6);
+
+      // Scene 4 — services UI (11.2 – 14.8)
+      tl.fromTo("#s4-grid", { y: 0 }, { y: -60, duration: 3.6, ease: "none" }, 11.2);
+      tl.fromTo("#s4-eyebrow", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.4, ease: "power2.out" }, 11.3);
+      tl.fromTo("#s4-label", { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.45, ease: "power2.out" }, 11.45);
+      tl.fromTo("#s4-ui", { opacity: 0, y: 220, rotationX: 24, scale: 0.9, transformPerspective: 1800 }, { opacity: 1, y: 0, rotationX: 0, scale: 1, transformPerspective: 1800, duration: 0.9, ease: "expo.out" }, 11.35);
+      tl.to("#s4-ui", { scale: 1.04, duration: 2.5, ease: "sine.inOut" }, 12.25);
+
+      // Scene 5 — motorsport + proof (14.8 – 18.0)
+      tl.fromTo("#s5-panel", { opacity: 0, x: 260 }, { opacity: 1, x: 0, duration: 0.6, ease: "expo.out" }, 14.85);
+      tl.fromTo("#s5-photo", { scale: 1.12 }, { scale: 1, duration: 3.2, ease: "power1.out" }, 14.8);
+      tl.fromTo(".s5-h", { yPercent: 110 }, { yPercent: 0, duration: 0.55, ease: "power4.out", stagger: 0.14 }, 15.15);
+      tl.fromTo("#s5-proof .proof", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.45, ease: "back.out(1.5)", stagger: 0.18 }, 15.7);
+
+      // Scene 6 — outro (18.0 – 22.0)
+      tl.fromTo("#s6-glow", { scale: 0.85 }, { scale: 1.1, duration: 4, ease: "sine.inOut" }, 18);
+      tl.fromTo("#s6-mark", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 18.1);
+      tl.fromTo("#s6-q", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.65, ease: "power4.out" }, 18.25);
+      tl.fromTo("#s6-btn", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(2)" }, 18.8);
+      tl.fromTo("#s6-url", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.45, ease: "power2.out" }, 19.0);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
