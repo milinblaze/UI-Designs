@@ -37,7 +37,7 @@ All audio is pre-mixed into `composition/assets/audio/mix.wav` (−14 LUFS).
 | Scene | Line |
 |---|---|
 | 1 | On race weekend, every system is tested. |
-| 2 | Vantlogix builds technology for complex venues and live events. |
+| 2 | Vantlogix builds technology for complex venues and live events. (sent to TTS as "Vantlogics" so it is said like "logics"; starts at 3.6 s) |
 | 3 | Including SPOVIX, our venue and event management platform. |
 | 4 | Alongside consulting, engineering, data and cloud services. |
 | 5 | Built close to motorsport, and proven at Yas Marina Circuit. |
